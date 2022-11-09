@@ -1,0 +1,10 @@
+.pet-page {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 5%;
+
+  &__text {
+    white-space: pre-wrap;
+  }
+}
