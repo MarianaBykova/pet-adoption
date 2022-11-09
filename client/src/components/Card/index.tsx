@@ -16,7 +16,7 @@ import Button from '../Button';
 
 const PetCard: React.FC<TPetType> = ({id, name, age, sex, activity, image}) => {
   return (
-    <Card sx={{ maxWidth: 345 }} className='card'>
+    <Card sx={{ maxWidth: 300 }} className='card'>
       {sex === 'М' ? <MaleIcon className='gender-icon male'/>: <FemaleIcon className='gender-icon female'/>}
       {/* <CardActionArea> */}
       <Link to={'/pet/'+id}>
