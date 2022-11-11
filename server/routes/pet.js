@@ -3,12 +3,13 @@ const { Pet } = require('../db/models');
 
 // get all pets
 petRouter.get('/', async(req, res) => {
-  const {sort} = req.query;
+  const {sort, ...rest} = req.query;
+  console.log(rest, 'QUERY')
   let pets;
 
   if (sort === 'activityDESC') {
-    pets = await Pet.findAll({order: [['activity', 'DESC']]});
-  } else pets = await Pet.findAll({order: [[sort, 'ASC']]});
+    pets = await Pet.findAll({order: [['activity', 'DESC']], where: rest});
+  } else pets = await Pet.findAll({order: [[sort, 'ASC']], /*where: rest*/});
   return res.json(pets);
 })
 

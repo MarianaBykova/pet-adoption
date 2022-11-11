@@ -1,5 +1,16 @@
 .pets-page {
 
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__filters {
+    display: flex;
+    flex-direction: column;
+    min-width: fit-content;
+  }
+
   &__cards {
     display: flex;
     flex-wrap: wrap;
