@@ -1,10 +1,13 @@
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useContext, useState } from 'react';
-import { SortContext, TSortContext } from '../../pages/PetsPage';
+
+import { useContext, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { resetPets, resetPage } from '../../store/slices/pets';
+import { SortContext, TSortContext } from '../../ui/AppLoader';
+
 
 const options = [
   {title: 'По возрасту', value: 'age'}, 
@@ -15,11 +18,13 @@ const options = [
 const SelectMui: React.FC = () => {
 
   const {sortType, setSortType} = useContext(SortContext) as TSortContext
+  const dispatch = useDispatch()
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = useCallback((event: SelectChangeEvent) => {
     setSortType(event.target.value);
-    
-  };
+    dispatch(resetPets())
+    dispatch(resetPage())
+  }, []);
 
   return ( 
     <FormControl fullWidth>

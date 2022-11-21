@@ -1,6 +1,6 @@
-import { TPetType } from "../types/types";
+import { TPetColor } from "../types/types";
 
-export function getPetColors (pets: TPetType[]): string[] {
+export function getPetColors (pets: TPetColor[]): string[] {
   let colors = [];
 
   for (let i = 0; i < pets.length; i++) {

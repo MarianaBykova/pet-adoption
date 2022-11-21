@@ -10,3 +10,7 @@ export type TPetType = {
   image: Array<string>;
   description: string;
 }
+
+export type TPetColor = {
+  color: string
+}

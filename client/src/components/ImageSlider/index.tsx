@@ -18,7 +18,7 @@ const ImageSlider: React.FC<TImageSliderProps> = ({images}) => {
 
   return (
     <Slider {...settings}>
-      {images.map(el => <div className='slider__item'><img src={el}/></div>)}
+      {images.map((el, index) => <div key={index} className='slider__item'><img src={el}/></div>)}
     </Slider>
   );
 }
