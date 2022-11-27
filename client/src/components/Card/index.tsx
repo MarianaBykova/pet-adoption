@@ -42,7 +42,7 @@ const PetCard: React.FC<TPetType> = ({id, name, age, sex, activity, image}) => {
       </CardContent>
       {/* </CardActionArea> */}
       <CardActions>
-        <Link to={'/pet/'+id}><Button title={'Узнать подробнее'} variant='text' size='small'/></Link>
+        <Link to={'/pet/'+id}><Button variant='text' size='small'>Узнать подробнее</Button></Link>
       </CardActions>
     </Card>
   );

@@ -1,12 +1,6 @@
-import { Button as MuiButton, ButtonProps as MuiButtonProps } from '@mui/material';
+import { Button as MuiButton, ButtonProps } from '@mui/material';
 
-type ButtonProps = MuiButtonProps & {
-  title: string;
-  // variant?: 'contained' | 'outlined' | 'text';
-  // size?: 	'small' | 'medium' | 'large';
-}
-
-const Button: React.FC<ButtonProps> = ({title, variant, size, onClick, ...rest}) => {
+const Button: React.FC<ButtonProps> = ({variant, size, onClick, children, ...rest}) => {
   return (
     <MuiButton 
       variant = {variant || "contained"}
@@ -14,7 +8,7 @@ const Button: React.FC<ButtonProps> = ({title, variant, size, onClick, ...rest})
       onClick = {onClick}
       {...rest}
     >
-    {title}
+    {children}
     </MuiButton>
   );
 }

@@ -25,7 +25,7 @@ const PetPage: React.FC = () => {
       <div>
         <Typography variant="h4" gutterBottom>{pet.name}</Typography>
         <Typography variant="body2" gutterBottom className='pet-page__text'>{pet.description}</Typography>
-        <Link to='/find-pet'><Button title={'Назад'} /></Link>
+        <Link to='/find-pet'><Button>Назад</Button></Link>
       </div>
     </div>
   );

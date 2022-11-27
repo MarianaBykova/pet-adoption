@@ -2,13 +2,15 @@ import { configureStore } from '@reduxjs/toolkit'
 import filter from './slices/filter';
 import colors from './slices/colors';
 import pets from './slices/pets';
+import user from './slices/user';
 import { useDispatch } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
     filter,
     colors, 
-    pets
+    pets,
+    user
   },
 })
 

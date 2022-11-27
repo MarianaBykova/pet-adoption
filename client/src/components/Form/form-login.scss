@@ -1,0 +1,18 @@
+.form {
+  &__login{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: white;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 2;
+  }
+
+  &__error{
+    color: red;
+    font-size: 0.6em;
+  }
+}

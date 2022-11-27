@@ -31,7 +31,7 @@ const PetsPage: React.FC = () => {
         }     
       </div>
       {loadMore && 
-      <Button onClick={() => dispatch(setPage())} title={'Загрузить еще'} style={{margin: 'auto', display: 'block'}}/>
+      <Button onClick={() => dispatch(setPage())} style={{margin: 'auto', display: 'block'}}>Загрузить еще</Button>
       }
     </div>
   );

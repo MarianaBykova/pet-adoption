@@ -7,7 +7,7 @@ const HomePage = () => {
     <div className='home-page'>
       <div className='home-page__text'>
         <p>Собаки и кошки нашего приюта ждут тебя!</p>
-        <Link to='/find-pet'><Button title={'Выбери друга'}/></Link>
+        <Link to='/find-pet'><Button>Выбери друга</Button></Link>
       </div>
       <img src='/img/main-pic.png' alt='cat and dog'/>
     </div>

@@ -32,7 +32,7 @@ const CheckboxList = () => {
       <Checkbox  value = 'false' name='friendliness' label = 'Предпочитает быть наедине с хозяином'/>
       <Checkbox value = '2' name='activity' label = 'Активный'/>
       <Checkbox  value = '3' name='activityLow' label = 'Спокойный'/>
-      <Button onClick={clearFilters} title={'Очистить фильтры'} variant='outlined'/>
+      <Button onClick={clearFilters} variant='outlined'>Очистить фильтры</Button>
     </aside>
   );
 }
