@@ -5,13 +5,19 @@ import jwt_decode from "jwt-decode";
 interface IUserState {
   user: null | number,
   message: null | string,
-  isAuth: boolean
+  isAuth: boolean,
+  userData: IUserData
 }  
 
 interface IAccessToken {
   id: number,
   iat: string,
   exp: string
+}
+
+interface IUserData {
+  userName: string,
+  email: string
 }
 
 type FetchTypeArgs = Record<string, string>
@@ -26,13 +32,15 @@ const initialState = getAccessToken()
   ? { 
       user: getAccessToken(),
       message: 'Вы вошли в систему',
-      isAuth: true
+      isAuth: true,
+      userData: {}
     } as IUserState
   
   : {
       user: null,
       message: null,
-      isAuth: false
+      isAuth: false,
+      userData: {}
     } as IUserState
 
 export const fetchUser = createAsyncThunk(
@@ -60,6 +68,9 @@ export const userSlice = createSlice({
       state.isAuth = false
       window.localStorage.removeItem('access_token')
       window.localStorage.removeItem('refresh_token')
+    },
+    setAdmin: (state, action: PayloadAction<IUserData>) => {
+      state.userData = action.payload
     }
   },
   extraReducers: (builder) => {
@@ -76,6 +87,6 @@ export const userSlice = createSlice({
 })
 
 
-export const { logout } = userSlice.actions
+export const { logout, setAdmin } = userSlice.actions
 
 export default userSlice.reducer

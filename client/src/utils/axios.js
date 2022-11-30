@@ -6,7 +6,7 @@ export const baseUrl = axios.create({
 })
 
 export const authUrl = axios.create({
-  baseURL: 'http://localhost:4000'
+  baseURL: 'http://localhost:4000/'
 })
 
 authUrl.interceptors.request.use(async (config) => {
@@ -15,7 +15,7 @@ authUrl.interceptors.request.use(async (config) => {
   const isExpired = Math.round(Date.now() / 1000) > expiresDate;
 
   if (isExpired) {
-    const {data} = await baseUrl.post('/token', {
+    const {data} = await baseUrl.post('/auth/token', {
       refreshToken: window.localStorage.getItem('refresh_token')
     })
     console.log('data in axios', data)

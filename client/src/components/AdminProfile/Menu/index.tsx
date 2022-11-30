@@ -12,8 +12,10 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../store/slices/user';
+import { Link } from 'react-router-dom';
+import { RootState } from '../../../store/store';
 
 const AdminMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -25,6 +27,8 @@ const AdminMenu = () => {
     setAnchorEl(null);
   };
   const dispatch = useDispatch();
+  const {user} = useSelector((state: RootState) => state.user);
+
   return (
     <>
     <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -77,20 +81,26 @@ const AdminMenu = () => {
     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
   >
     <MenuItem>
-      <Avatar /> Панель администратора
+      <Link to={`/profile/${user}/dashboard`}>
+        <Avatar /> Панель администратора
+      </Link>
     </MenuItem>
     <Divider />
     <MenuItem>
+    <Link to={`/profile/${user}/add-pet`}>
       <ListItemIcon>
         <PetsIcon fontSize="small" />
       </ListItemIcon>
       Добавить питомца
+    </Link>
     </MenuItem>
     <MenuItem>
+    <Link to={`/profile/${user}`}>
       <ListItemIcon>
         <Settings fontSize="small" />
       </ListItemIcon>
       Настройки профиля
+    </Link>
     </MenuItem>
     <MenuItem onClick={() => dispatch(logout())}>
       <ListItemIcon>

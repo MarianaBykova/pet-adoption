@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import PetsPage from './pages/PetsPage';
 import PetPage from './pages/PetPage';
 import AppLoader from './ui/AppLoader';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
             <Route path='/' element={<HomePage/>} />
             <Route path='/find-pet' element={<PetsPage/>} />
             <Route path='/pet/:id' element={<PetPage/>} />
+            <Route path='/profile/:id/:content' element={<ProfilePage/>} />
+            <Route path='/profile/:id/' element={<ProfilePage/>} />
           </Routes>
         </div>
       </AppLoader>

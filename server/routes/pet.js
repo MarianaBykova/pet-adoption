@@ -1,6 +1,7 @@
 const petRouter = require('express').Router();
 const { Op } = require('sequelize');
 const { Pet } = require('../db/models');
+const checkAuth = require('../middleware/auth.middleware')
 
 // get all pets
 petRouter.get('/', async(req, res) => {
@@ -56,6 +57,16 @@ petRouter.get('/:id', async (req, res) => {
   const pet = await Pet.findByPk(+id)
 
   return res.json(pet);
+})
+
+// create pet
+petRouter.post('/create', checkAuth, async(req, res) => {
+  try {
+    await Pet.create(req.body)
+    return res.status(201).json({message: 'Питомец создан!'})
+  } catch (e) {
+    res.status(400).json({message: 'Осуществлен некорректный запрос. Попробуйте еще раз.'})
+  }
 })
 
 

@@ -1,0 +1,13 @@
+.profile-info{
+  width: 100%;
+
+  &__content{
+    display: flex;
+    gap: 7%;
+  }
+
+  &__card {
+    width: 100%;
+    padding: 10px 20px;
+  }
+}

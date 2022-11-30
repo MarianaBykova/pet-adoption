@@ -6,7 +6,8 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
 const petRouter = require('./routes/pet');
-const authRouter = require('./routes/auth')
+const authRouter = require('./routes/auth');
+const userRouter = require('./routes/user');
 
 const PORT = process.env.PORT;
 
@@ -30,5 +31,6 @@ app.use(cookieParser());
 
 app.use('/pet', petRouter);
 app.use('/auth', authRouter);
+app.use('/profile', userRouter);
 
 app.listen(PORT, () => console.log('Server is listening on PORT', PORT))

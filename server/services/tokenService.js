@@ -31,8 +31,9 @@ class TokenService {
   }
 
   validateRefresh(refreshToken) {
-    try {
+    try {console.log('jwt verify refresh', jwt.verify(refreshToken, process.env.REFRESH_SECRET))
       return jwt.verify(refreshToken, process.env.REFRESH_SECRET);
+      
     } catch (error) {
       return null;
     }
