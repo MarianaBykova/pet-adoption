@@ -1,6 +1,6 @@
 const petRouter = require('express').Router();
 const { Op } = require('sequelize');
-const { Pet } = require('../db/models');
+const { Pet, Archive } = require('../db/models');
 const checkAuth = require('../middleware/auth.middleware')
 
 // get all pets
@@ -50,6 +50,11 @@ petRouter.get('/color', async(req, res) => {
   return res.json(colors)
 })
 
+// get all pets without queries
+petRouter.get('/all', checkAuth, async(req,res) => {
+  const pets = await Pet.findAll();
+  return res.json(pets)
+})
 
 // get one pet
 petRouter.get('/:id', async (req, res) => {
@@ -69,5 +74,40 @@ petRouter.post('/create', checkAuth, async(req, res) => {
   }
 })
 
+// update pet
+petRouter.post('/update/:id', checkAuth, async(req, res) => {
+  try {
+    const { id } = req.params;
+    await Pet.update(req.body, {where: {id}})
+    return res.status(202).json({ message: 'Питомец обновлен.' })
+  } catch (e) {
+    res.status(500).json({ message: 'На сервере произошла ошибка. Попробуйте позже.' })
+  }
+})
+
+// send pet to archive
+petRouter.delete('/archive/:id', checkAuth, async(req, res) => {
+  try {
+    const { id } = req.params;
+    console.log('ID', id)
+    const pet = await Pet.findByPk(+id);
+    await Pet.destroy({where: { id }});
+    await Archive.create({ name: pet.name, age: pet.age, image: pet.image[0], hasHistory: false })
+    return res.status(201).json({ message: 'Питомец отправлен в архив.' })
+  } catch (e) {
+    res.status(500).json({ message: 'На сервере произошла ошибка. Попробуйте позже.' })
+  }
+})
+
+// delete one pet 
+petRouter.delete('/:id', checkAuth, async(req, res) => {
+  try {
+    const { id } = req.params;
+    await Pet.destroy({ where: { id } })
+    return res.json({ message: 'Питомец удален.' })
+  } catch (e) {
+    res.status(500).json({ message: 'На сервере произошла ошибка. Попробуйте позже.' })
+  }
+})
 
 module.exports = petRouter;
