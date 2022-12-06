@@ -1,7 +1,17 @@
 const petRouter = require('express').Router();
 const { Op } = require('sequelize');
 const { Pet, Archive } = require('../db/models');
-const checkAuth = require('../middleware/auth.middleware')
+const checkAuth = require('../middleware/auth.middleware');
+
+// get archive pets
+petRouter.get('/archive', async(req, res) => {
+  try {
+    const archivePets = await Archive.findAll();
+    return res.json(archivePets);
+  } catch (e) {
+    res.status(500).json({ message: 'На сервере произошла ошибка. Попробуйте позже.' })
+  }
+})
 
 // get all pets
 petRouter.get('/', async(req, res) => {
@@ -80,6 +90,23 @@ petRouter.post('/update/:id', checkAuth, async(req, res) => {
     const { id } = req.params;
     await Pet.update(req.body, {where: {id}})
     return res.status(202).json({ message: 'Питомец обновлен.' })
+  } catch (e) {
+    res.status(500).json({ message: 'На сервере произошла ошибка. Попробуйте позже.' })
+  }
+})
+
+// update archive pet 
+petRouter.post('/archive/:id', checkAuth, async(req, res) => {
+  try {
+    const { id } = req.params;
+    const { text, history } = req.body;
+
+    if (history) {
+      await Archive.update({ text, history, hasHistory: true }, { where: {id} })
+    } else {
+      await Archive.update(req.body, { where: {id} })
+    }
+    return res.json({ message: 'Данные обновлены.' })
   } catch (e) {
     res.status(500).json({ message: 'На сервере произошла ошибка. Попробуйте позже.' })
   }

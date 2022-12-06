@@ -8,6 +8,7 @@ import PetsPage from './pages/PetsPage';
 import PetPage from './pages/PetPage';
 import AppLoader from './ui/AppLoader';
 import ProfilePage from './pages/ProfilePage';
+import ArchivePage from './pages/ArchivePage';
 
 function App() {
   return (
@@ -19,8 +20,9 @@ function App() {
             <Route path='/' element={<HomePage/>} />
             <Route path='/find-pet' element={<PetsPage/>} />
             <Route path='/pet/:id' element={<PetPage/>} />
+            <Route path='/at-home' element={<ArchivePage/>} />
             <Route path='/profile/:id/:content' element={<ProfilePage/>} />
-            <Route path='/profile/:id/' element={<ProfilePage/>} />
+            <Route path='/profile/:id/' element={<ProfilePage/>} />            
           </Routes>
         </div>
       </AppLoader>

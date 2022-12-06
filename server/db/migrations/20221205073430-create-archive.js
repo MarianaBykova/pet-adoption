@@ -24,6 +24,9 @@ module.exports = {
       hasHistory: {
         type: Sequelize.BOOLEAN
       },
+      history: {
+        type: Sequelize.TEXT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

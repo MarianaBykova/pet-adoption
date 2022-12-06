@@ -89,6 +89,7 @@ const PetsList: React.FC = () => {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        labelRowsPerPage='Питомцев на странице'
       />
     </>
   );

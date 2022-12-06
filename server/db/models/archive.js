@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     age: DataTypes.FLOAT(4,2),
     image: DataTypes.TEXT,
     text: DataTypes.STRING,
-    hasHistory: DataTypes.BOOLEAN
+    hasHistory: DataTypes.BOOLEAN,
+    history: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Archive',

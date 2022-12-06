@@ -17,3 +17,13 @@ export type TPetType = {
 export type TPetColor = {
   color: string
 }
+
+export type TArchivePet = {
+  id: number;
+  name: string;
+  age: number;
+  image: string;
+  text: null | string;
+  hasHistory: boolean;
+  history: null | string
+}
