@@ -1,0 +1,15 @@
+.page-404 {
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    text-align: center;
+  }
+
+  &__text {
+    padding: 2%;
+  }
+}
+
