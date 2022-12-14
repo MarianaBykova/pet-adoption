@@ -11,6 +11,8 @@ import PetsIcon from '@mui/icons-material/Pets';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 
+import { toast } from 'react-toastify';
+
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../store/slices/user';
@@ -28,6 +30,11 @@ const AdminMenu = () => {
   };
   const dispatch = useDispatch();
   const {user} = useSelector((state: RootState) => state.user);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    toast.warning('Вы вышли из системы')
+  }
 
   return (
     <>
@@ -102,7 +109,7 @@ const AdminMenu = () => {
       Настройки профиля
     </Link>
     </MenuItem>
-    <MenuItem onClick={() => dispatch(logout())}>
+    <MenuItem onClick={handleLogout}>
       <ListItemIcon>
         <Logout fontSize="small" />
       </ListItemIcon>

@@ -3,9 +3,9 @@ export default function floatToYearsMonths(age: number): string {
   let years, months;
   
   if (array[1] == '1') {
-    months = 'месяц'
-  } else if (+array[1] > 4) months = 'месяцев';
-  else months = 'месяца';
+    months = 'мес.'
+  } else if (+array[1] > 4) months = 'мес.';
+  else months = 'мес.';
 
   if (array[0] == '0') return `${array[1]} ${months}`;
   

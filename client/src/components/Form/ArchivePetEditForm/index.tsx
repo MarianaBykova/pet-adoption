@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import Button from '../../Button';
 
 import { Formik, Form } from 'formik';
+import { toast } from 'react-toastify';
 import { authUrl } from '../../../utils/axios';
 
 import './archive-pet-edit-form.scss';
@@ -24,14 +25,9 @@ const ArchivePetEditForm: React.FC<TArchivePetEditFormProps> = ({ text, history,
         initialValues={{ text: text, history: history }}
           onSubmit={(values, { setSubmitting }) => {
             authUrl.post('/pet/archive/'+petId, values)
-              .then((res) => console.log(res.data.message))
+              .then((res) => toast.success(res.data.message))
               .then(() => dispatch(setRefetchArchive(true)))
-            // authUrl.post('/profile/edit', values)
-            //   .then((res) => {
-            //     dispatch(setAdmin(res.data.user))
-            //   })
             onCloseForm()  
-            // navigate('/profile/1')
           }}
         >
           {({ isSubmitting, handleChange, values }) => (

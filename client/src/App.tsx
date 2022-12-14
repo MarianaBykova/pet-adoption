@@ -1,5 +1,9 @@
 import { ThemeProvider } from '@mui/material';
 import theme from './theme';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import Header from './components/Header';
@@ -25,7 +29,8 @@ function App() {
             <Route path='/profile/:id/:content' element={<ProfilePage/>} />
             <Route path='/profile/:id/' element={<ProfilePage/>} />            
           </Routes>
-        </div> 
+        </div>
+        <ToastContainer position="bottom-right"/> 
         <Footer />
       </AppLoader>
     </ThemeProvider>

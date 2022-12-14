@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '../../Button';
 
 import { Formik, Form, FormikErrors, ErrorMessage } from 'formik';
+import { toast } from 'react-toastify';
 import { authUrl } from '../../../utils/axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -39,8 +40,9 @@ const ProfileEdit: React.FC = () => {
           onSubmit={(values, { setSubmitting }) => {
             authUrl.post('/profile/edit', values)
               .then((res) => {
-                dispatch(setAdmin(res.data.user))
-              })
+                dispatch(setAdmin(res.data.user));
+                toast.success(res.data.message)
+              }).catch(error => toast.error(error.message))
             setSubmitting(false);
             navigate('/profile/1')
           }}

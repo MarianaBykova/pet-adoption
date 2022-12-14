@@ -6,6 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import PetEditModal from '../../PetEditModal';
 
 import { authUrl } from '../../../../utils/axios';
+import { toast } from 'react-toastify';
 
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -30,13 +31,17 @@ const PetListRows: React.FC<TPetListRowProps> = ({ row }) => {
 
   const handleDelete = () => {
     authUrl.delete('/pet/'+row.id)
-    dispatch(setRefetch(true));
+      .then((res) => toast.success(res.data.message))
+      .then(() => dispatch(setRefetch(true)))
+      .catch((error) => toast.error(error.message))
     setAnchorEl(null);
   };
 
   const handleSendToArchive = () => {
-    authUrl.delete('/pet/archive/'+row.id);
-    dispatch(setRefetch(true));
+    authUrl.delete('/pet/archive/'+row.id)
+      .then((res) => toast.success(res.data.message))
+      .then(() => dispatch(setRefetch(true)))
+      .catch((error) => toast.error(error.message))
     setAnchorEl(null);
   };
 

@@ -15,6 +15,7 @@ import Button from '../../Button';
 import RadioGroup from '../../Radio';
 
 import { Formik, Form, FieldArray } from 'formik';
+import { toast } from 'react-toastify';
 import { authUrl } from '../../../utils/axios';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
@@ -35,7 +36,9 @@ const PetForm = () => {
         initialValues={{name: '', type: 'cat', sex: '', age: 0, coat: '', color: '', activity: 0, friendliness: false, image:[], description: ''}}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             console.log('pet values', values)
-            authUrl.post('/pet/create', values).then((res) => console.log(res))
+            authUrl.post('/pet/create', values)
+              .then((res) => toast.success(res.data.message))
+              .catch((error) => toast.error(error.message))
             resetForm();
           }}
         >

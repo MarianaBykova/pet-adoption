@@ -14,6 +14,7 @@ import RadioGroup from '../../Radio';
 import Button from '../../Button';
 
 import { Formik, Form, FieldArray } from 'formik';
+import { toast } from 'react-toastify';
 
 import { TPetType } from "../../../types/types";
 
@@ -42,8 +43,9 @@ const PetEditForm: React.FC<TPetEditFormProps> = ({ petData, onCloseForm }) => {
         initialValues={{name: petData?.name, type: petData?.type, sex: petData?.sex, age: petData?.age, coat: petData?.coat, color: petData?.color, activity: petData?.activity, friendliness: petData?.friendliness, image: petData?.image, description: petData?.description}}
           onSubmit={(values, { setSubmitting }) => {
             authUrl.post('/pet/update/'+petData?.id, values)
-              .then((res) => console.log(res))
-              .then(() => dispatch(setRefetch(true)));
+              .then((res) => toast.success(res.data.message))
+              .then(() => dispatch(setRefetch(true)))
+              .catch((error) => toast.error(error.message))
             onCloseForm()            
           }}
         >

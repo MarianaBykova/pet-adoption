@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { baseUrl } from '../../utils/axios'
 import jwt_decode from "jwt-decode";
+import { toast } from 'react-toastify';
+import { AxiosError, AxiosResponse } from 'axios';
 
 interface IUserState {
   user: null | number,
@@ -46,15 +48,18 @@ const initialState = getAccessToken()
 export const fetchUser = createAsyncThunk(
   'user/fetchUser',
   async ({email, password}: FetchTypeArgs) => {
-    console.log('email, user', email, password)
-    const {data} = await baseUrl.post('/auth', {
-      email,
-      password
-    })
-    window.localStorage.setItem('access_token', data.accessToken);
-    window.localStorage.setItem('refresh_token', data.refreshToken);
-
-    return data
+    try {
+      const {data} = await baseUrl.post('/auth', {
+        email,
+        password
+      })
+      window.localStorage.setItem('access_token', data.accessToken);
+      window.localStorage.setItem('refresh_token', data.refreshToken);
+      toast(data.message) 
+      return data
+    } catch (error: any) {
+      toast.error(error.response.data.message)
+    }
   }
 )
 
