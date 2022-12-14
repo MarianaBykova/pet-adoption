@@ -67,11 +67,15 @@ petRouter.get('/all', checkAuth, async(req,res) => {
 })
 
 // get one pet
-petRouter.get('/:id', async (req, res) => {
-  const {id} = req.params;
-  const pet = await Pet.findByPk(+id)
-
-  return res.json(pet);
+petRouter.get('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const pet = await Pet.findByPk(+id)
+    if (pet) return res.json(pet);
+    else next()    
+  } catch (e) {
+    return res.status(404);
+  }
 })
 
 // create pet

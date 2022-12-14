@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { baseUrl } from '../../utils/axios'
 import jwt_decode from "jwt-decode";
 import { toast } from 'react-toastify';
-import { AxiosError, AxiosResponse } from 'axios';
 
 interface IUserState {
   user: null | number,
@@ -11,10 +10,10 @@ interface IUserState {
   userData: IUserData
 }  
 
-interface IAccessToken {
+interface IRefreshToken {
   id: number,
   iat: string,
-  exp: string
+  exp: number
 }
 
 interface IUserData {
@@ -25,10 +24,16 @@ interface IUserData {
 type FetchTypeArgs = Record<string, string>
 
 function getAccessToken(): number | false {
-  let token = window.localStorage.getItem('access_token');
+  let token = window.localStorage.getItem('refresh_token');
+  let expiresDate, isExpired;
+
   if (token) {
-    return jwt_decode<IAccessToken>(token).id;
-  } else return false;
+    expiresDate = jwt_decode<IRefreshToken>(token).exp;
+    isExpired = Math.round(Date.now() / 1000) > expiresDate;
+  }
+  
+  if (token && !isExpired) return jwt_decode<IRefreshToken>(token).id; 
+  else return false;
 }
 const initialState = getAccessToken()
   ? { 

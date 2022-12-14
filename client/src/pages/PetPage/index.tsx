@@ -1,11 +1,17 @@
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { TPetType } from "../../types/types";
-import { baseUrl } from "../../utils/axios";
 import Typography from '@mui/material/Typography';
-import './pet-page.scss'
+
 import ImagesList from "../../components/ImagesList";
 import Button from "../../components/Button";
+import Spinner from "../../components/Spinner";
+
+import { TPetType } from "../../types/types";
+import { baseUrl } from "../../utils/axios";
+
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+
+import './pet-page.scss';
+import { toast } from 'react-toastify';
 
 const PetPage: React.FC = () => {
   
@@ -14,10 +20,11 @@ const PetPage: React.FC = () => {
 
   useEffect(() => {
     baseUrl.get('/pet/'+id)
-      .then((res) => setPet(res.data));
+      .then((res) => setPet(res.data))
+      .catch((error) => toast.error(error.message))
   }, [])
 
-  if(!pet) return <div>Идет загрузка ...</div>
+  if (!pet) return <div style={{display: 'flex', height: '100%'}}><Spinner /></div>
   
   return (
     <div className='pet-page'>

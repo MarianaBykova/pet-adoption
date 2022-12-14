@@ -5,7 +5,7 @@ import FormLogin from "../Form/LoginForm";
 import AdminMenu from "../AdminProfile/Menu";
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
@@ -27,8 +27,9 @@ const Header: React.FC = () => {
       </div>
       <nav className='header__nav'>
         <ul>
-          <li><Link to='/about-us'>О нас</Link></li>
-          <li><Link to='/at-home'>Уже дома</Link></li>
+          <li><NavLink to='/about-us'>О нас</NavLink></li>
+          <li><NavLink to='/at-home'>Уже дома</NavLink></li>
+          <li><NavLink to='/find-pet'>Питомцы</NavLink></li>
         </ul>
       </nav>
       {isAuth 

@@ -4,6 +4,7 @@ import Table from "../../../Table";
 import TableHead from "../../../Table/Head";
 import TableBody from "../../../Table/Body";
 import PetListRows from '../PetListRows';
+import Spinner from '../../../Spinner';
 import useTableSort from '../../../../hooks/useTableSort';
 
 import { TPetType } from "../../../../types/types";
@@ -52,6 +53,7 @@ const PetsList: React.FC = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [rows, setRows] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   const { sortedItems, order, orderBy, handleRequestSort } = useTableSort(rows);
 
@@ -59,9 +61,11 @@ const PetsList: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setLoading(true)
     authUrl.get('/pet/all')
       .then((res) => setRows(res.data))
       .then(() => dispatch(setRefetch(false)))
+      .then(() => setLoading(false))
   }, [needRefetch])
 
   // const emptyRows =
@@ -80,13 +84,16 @@ const PetsList: React.FC = () => {
     <>
       <Table title='Список питомцев'>
         <TableHead headCells={headCells} order={order} orderBy={orderBy} onRequestSort={handleRequestSort}/>
-        <TableBody>
-          {sortedItems
-            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map(row => (
-            <PetListRows key={row.id} row={row} />
-          ))}
-        </TableBody>
+        {isLoading 
+          ? <div style={{display: 'table-row', width: '100%'}}><Spinner /></div>
+          : <TableBody>
+              {sortedItems
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map(row => (
+                <PetListRows key={row.id} row={row} />
+              ))}
+            </TableBody>
+        }
       </Table>
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
