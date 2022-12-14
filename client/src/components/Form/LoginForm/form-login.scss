@@ -1,14 +1,18 @@
 .form {
   &__login{
     position: fixed;
-    top: 50%;
-    left: 50%;
-    background-color: white;
-    padding: 30px;
+    top: 30%;
+    left: 40%;
+    background-color: rgba(46, 37, 71, 0.7);
+    padding: 90px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    z-index: 2;
+    z-index: 5;
+
+    input {
+      background-color: white;
+    }
   }
 
   &__error{

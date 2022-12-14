@@ -1,0 +1,20 @@
+.profile-edit {
+  min-width: 40%;
+
+  &__content {
+    padding: 20px;
+
+    h2 {
+      margin-bottom: 2%;
+    }
+
+    &-form {
+      display: flex;
+      flex-direction: column;
+
+      div {
+        padding-bottom: 2%;
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@ import PetPage from './pages/PetPage';
 import AppLoader from './ui/AppLoader';
 import ProfilePage from './pages/ProfilePage';
 import ArchivePage from './pages/ArchivePage';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
             <Route path='/profile/:id/:content' element={<ProfilePage/>} />
             <Route path='/profile/:id/' element={<ProfilePage/>} />            
           </Routes>
-        </div>
+        </div> 
+        <Footer />
       </AppLoader>
     </ThemeProvider>
   );

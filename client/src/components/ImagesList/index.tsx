@@ -8,7 +8,7 @@ type TImagesList = {
 
 const ImagesList: React.FC<TImagesList> = ({data}) => {
   return (
-    <Box sx={{ width: 700, height: 450 }}>
+    <Box sx={{ maxWidth: 500, maxHeight: '100%', overflowY: 'scroll' }}>
       <ImageList variant="masonry" cols={2} gap={8}>
         {data.map((item) => (
           <ImageListItem key={item}>

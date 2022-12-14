@@ -22,7 +22,7 @@ const PetPage: React.FC = () => {
   return (
     <div className='pet-page'>
       <ImagesList data={pet.image}/>
-      <div>
+      <div className='pet-page__content'>
         <Typography variant="h4" gutterBottom>{pet.name}</Typography>
         <Typography variant="body2" gutterBottom className='pet-page__text'>{pet.description}</Typography>
         <Link to='/find-pet'><Button>Назад</Button></Link>

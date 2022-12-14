@@ -9,6 +9,8 @@ import { authUrl } from '../../../../utils/axios';
 
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setRefetch } from '../../../../store/slices/refetch';
 
 type TPetListRowProps = {
   row: any;
@@ -20,17 +22,21 @@ const PetListRows: React.FC<TPetListRowProps> = ({ row }) => {
   const open = Boolean(anchorEl);
   const [showEditModal, setShowEditModal] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleDelete = () => {
     authUrl.delete('/pet/'+row.id)
+    dispatch(setRefetch(true));
     setAnchorEl(null);
   };
 
   const handleSendToArchive = () => {
     authUrl.delete('/pet/archive/'+row.id);
+    dispatch(setRefetch(true));
     setAnchorEl(null);
   };
 

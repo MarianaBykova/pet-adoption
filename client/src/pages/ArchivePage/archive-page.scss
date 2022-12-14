@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.archive-page {
+  padding: 30px 10px;
+  height: 90%;
+  box-shadow: 0 0 10px pink;
+
+  h2 {
+    font-family: 'Lobster', cursive, sans-serif;
+    color: rgb(217, 103, 122);
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-align: center;
+    margin-bottom: 3%;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+    flex-wrap: wrap;
+
+    .MuiCard-root {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 240px;
+      margin-bottom: 10px;
+    }
+  }
+}

@@ -10,6 +10,9 @@ import { TPetType } from "../../../../types/types";
 import { authUrl } from '../../../../utils/axios';
 
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../../store/store';
+import { setRefetch } from '../../../../store/slices/refetch';
 
 interface IHeadCell {
   disablePadding: boolean;
@@ -52,10 +55,14 @@ const PetsList: React.FC = () => {
 
   const { sortedItems, order, orderBy, handleRequestSort } = useTableSort(rows);
 
+  const { needRefetch } = useSelector((state: RootState) => state.refetch);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     authUrl.get('/pet/all')
       .then((res) => setRows(res.data))
-  }, [])
+      .then(() => dispatch(setRefetch(false)))
+  }, [needRefetch])
 
   // const emptyRows =
   //   page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;

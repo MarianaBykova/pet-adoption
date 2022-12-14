@@ -16,14 +16,15 @@ const ProfileInfo: React.FC = () => {
     <main className='profile-info'>
       <h2>Страница пользователя</h2>
       <div className='profile-info__content'>
-      <Avatar sx={{ bgcolor: pink[300], width: 120, height: 120 }}>A</Avatar>
+      <Avatar sx={{ bgcolor: pink[300], width: 120, height: 120, fontSize: '3.25rem' }}>A</Avatar>
       <Paper className='profile-info__card' elevation={3}>
         <p>Имя пользователя: {userData.userName}</p>
         <p>Почта: {userData.email}</p>
-        <p>Роль: администратор</p>
+        <p>Роль: администратор</p> 
+        <Link to='/profile/1/edit' className='profile-info__button'><Button style={{display: 'block', margin:'auto'}}>Изменить данные</Button></Link>
       </Paper>
       </div>
-      <Link to='/profile/1/edit'><Button style={{display: 'block', margin:'auto'}}>Изменить данные</Button></Link>
+     
     </main>
   );
 }

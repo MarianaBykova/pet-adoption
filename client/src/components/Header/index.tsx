@@ -1,9 +1,8 @@
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 
-import FormLogin from "../Form";
+import FormLogin from "../Form/LoginForm";
 import AdminMenu from "../AdminProfile/Menu";
-
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -12,18 +11,21 @@ import { RootState } from "../../store/store";
 
 import './header.scss';
 
-const Header = () => {
+const Header: React.FC = () => {
 
   const [showLoginForm, setShowLoginForm] = useState(false)
   const {isAuth} = useSelector((state: RootState) => state.user)
 
   return (
     <header className='header'>
-      <div className='logo'>
+      <div className='header__logo'>
         <Link to='/'><img src='/img/logo.svg' alt='logo'/></Link>
-        <span>Добрый дом</span>
+        <div className='header__logo-text'>
+          <span>Добрый</span>
+          <span>дом</span>
+        </div>
       </div>
-      <nav>
+      <nav className='header__nav'>
         <ul>
           <li><Link to='/about-us'>О нас</Link></li>
           <li><Link to='/at-home'>Уже дома</Link></li>
@@ -37,13 +39,6 @@ const Header = () => {
         </Tooltip>)
       }
       {showLoginForm && !isAuth &&<FormLogin setShowLoginForm ={setShowLoginForm}/>}
-      {/* <div>
-      <Tooltip title="Вход только для администратора">
-        <Avatar aria-haspopup="true" src="/broken-image.jpg" onClick={() => setShowLoginForm(!showLoginForm)}/>
-      </Tooltip>
-      {showLoginForm && isAuth && <AdminMenu setShowLoginForm ={setShowLoginForm} show={showLoginForm}/>}
-      {showLoginForm && !isAuth &&<FormLogin setShowLoginForm ={setShowLoginForm}/>}
-      </div> */}
     </header>
   );
 }

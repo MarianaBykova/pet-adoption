@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
 import { setAdmin } from '../../../store/slices/user';
 
+import './profile-edit.scss';
+
 interface FormValues {
   email: string;
 }
@@ -20,7 +22,7 @@ const ProfileEdit: React.FC = () => {
   const navigate = useNavigate();
   return (
     <main className='profile-edit'>
-      <Paper elevation={3} className='profile-edit__form'>
+      <Paper elevation={3} className='profile-edit__content'>
         <h2>Редактирование профиля</h2>
         <Formik
         initialValues={{ email: userData.email, password: '', userName: userData.userName }}
@@ -44,7 +46,7 @@ const ProfileEdit: React.FC = () => {
           }}
         >
           {({ isSubmitting, handleChange, values }) => (
-            <Form>
+            <Form className='profile-edit__content-form'>
               <TextField
                 required
                 label="Имя пользователя"

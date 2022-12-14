@@ -1,8 +1,16 @@
 .pets-page {
+  padding: 30px 10px;
+  // height: 90%;
+  box-shadow: 0 0 10px gray;
+
+  &__select {
+    display: flex;
+    justify-content: flex-end;
+  }
 
   &__content {
     display: flex;
-    gap: 3%;
+    gap: 2%;
   }
 
   &__filters {
@@ -12,8 +20,19 @@
   }
 
   &__cards {
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
-    gap: 3%;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &-items {
+      height: fit-content;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3%;
+    }
   }
 }
+
+

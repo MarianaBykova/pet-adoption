@@ -27,7 +27,7 @@ const SelectMui: React.FC = () => {
   }, []);
 
   return ( 
-    <FormControl fullWidth>
+    <FormControl fullWidth sx={{maxWidth: '20%', marginBottom: '1%'}}>
       <InputLabel id="demo-simple-select-label">Сортировать</InputLabel>
       <Select
         labelId="demo-simple-select-label"

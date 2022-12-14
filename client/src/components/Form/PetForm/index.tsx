@@ -29,7 +29,7 @@ const PetForm = () => {
   const {colors} = useSelector((state: RootState) => state.colors)
   return (
     <main className='add-pet'>
-      <Paper elevation={3} className='add-pet'>
+      <Paper elevation={3} className='add-pet__content'>
         <h2>Добавление питомца</h2>
         <Formik
         initialValues={{name: '', type: 'cat', sex: '', age: 0, coat: '', color: '', activity: 0, friendliness: false, image:[], description: ''}}

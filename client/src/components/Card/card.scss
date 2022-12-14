@@ -1,5 +1,16 @@
 .card {
   position: relative;
+  margin-bottom: 1%;
+  
+  .MuiCardContent-root {
+    padding-bottom: 10px;
+  }
+
+  &__title {
+    &.MuiTypography-root {
+      font-size: 1rem;
+    }
+  }
 }
 
 .gender-icon {

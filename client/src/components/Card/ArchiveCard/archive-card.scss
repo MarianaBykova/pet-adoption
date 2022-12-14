@@ -1,0 +1,11 @@
+.archive-card {
+  &__title {
+    .MuiTypography-root {
+      font-size: 1.1rem;
+    }
+  }
+
+  &__history {
+    white-space: pre-line;
+  }
+}

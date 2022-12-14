@@ -41,7 +41,7 @@ const AdminMenu = () => {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
       >
-        <Avatar sx={{ width: 32, height: 32 }} src="/broken-image.jpg"/>
+        <Avatar sx={{ width: 40, height: 40 }} src="/broken-image.jpg"/>
       </IconButton>
     </Tooltip>
   </Box>
@@ -58,8 +58,8 @@ const AdminMenu = () => {
         filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
         mt: 1.5,
         '& .MuiAvatar-root': {
-          width: 32,
-          height: 32,
+          width: 20,
+          height: 20,
           ml: -0.5,
           mr: 1,
         },
@@ -81,7 +81,7 @@ const AdminMenu = () => {
     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
   >
     <MenuItem>
-      <Link to={`/profile/${user}/dashboard`}>
+      <Link to={`/profile/${user}/dashboard`} style={{ display: 'flex', alignItems: 'center' }}>
         <Avatar /> Панель администратора
       </Link>
     </MenuItem>

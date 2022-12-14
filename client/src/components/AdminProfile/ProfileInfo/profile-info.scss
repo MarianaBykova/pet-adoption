@@ -2,12 +2,25 @@
   width: 100%;
 
   &__content{
+    min-height: 60%;
+    margin-top: 4%;
     display: flex;
     gap: 7%;
   }
 
   &__card {
-    width: 100%;
+    position: relative;
+    min-width: 50%;
     padding: 10px 20px;
+
+    p {
+      padding-bottom: 2%;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    bottom: 10px;
+    left: 37%;
   }
 }

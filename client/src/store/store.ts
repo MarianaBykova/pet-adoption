@@ -3,6 +3,7 @@ import filter from './slices/filter';
 import colors from './slices/colors';
 import pets from './slices/pets';
 import user from './slices/user';
+import refetch from './slices/refetch';
 import { useDispatch } from 'react-redux';
 
 export const store = configureStore({
@@ -10,7 +11,8 @@ export const store = configureStore({
     filter,
     colors, 
     pets,
-    user
+    user,
+    refetch
   },
 })
 

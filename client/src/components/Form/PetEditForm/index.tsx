@@ -18,8 +18,11 @@ import { Formik, Form, FieldArray } from 'formik';
 import { TPetType } from "../../../types/types";
 
 import { authUrl } from '../../../utils/axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
+import { setRefetch } from '../../../store/slices/refetch';
+
+import './edit-pet.scss';
 
 type TPetEditFormProps = {
   petData: TPetType | undefined;
@@ -31,18 +34,21 @@ const genderTypes = [{id: 'М', title: 'М'}, {id: 'Ж', title: 'Ж'}];
 const coatTypes = [{id:'длинная', title: 'длинная'}, {id:'короткая', title: 'короткая'}]
 
 const PetEditForm: React.FC<TPetEditFormProps> = ({ petData, onCloseForm }) => {
-  const { colors } = useSelector((state: RootState) => state.colors)
+  const { colors } = useSelector((state: RootState) => state.colors);
+  const dispatch = useDispatch();
 
   return (
     <Formik
         initialValues={{name: petData?.name, type: petData?.type, sex: petData?.sex, age: petData?.age, coat: petData?.coat, color: petData?.color, activity: petData?.activity, friendliness: petData?.friendliness, image: petData?.image, description: petData?.description}}
           onSubmit={(values, { setSubmitting }) => {
-            authUrl.post('/pet/update/'+petData?.id, values).then((res) => console.log(res));
+            authUrl.post('/pet/update/'+petData?.id, values)
+              .then((res) => console.log(res))
+              .then(() => dispatch(setRefetch(true)));
             onCloseForm()            
           }}
         >
           {({ isSubmitting, handleChange, values, setFieldValue, handleBlur }) => (
-            <Form className='add-pet__form'>
+            <Form className='edit-pet__form'>
               <TextField
                 required
                 label="Имя питомца"

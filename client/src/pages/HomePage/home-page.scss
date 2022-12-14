@@ -1,6 +1,95 @@
 .home-page {
+  padding: 5px 10px;
+  height: 90%;
   background-color: #ffeb3b;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 0 10px gray;
+  font-size: 1.2em;
+
+  img {
+    max-width: 600px;
+  }
+
+  &__text {
+    margin-left: 10%;
+
+    @media (max-width: 850px) {
+      margin-left: 2%;
+    }
+
+    p {
+      padding-bottom: 5%;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 1em;
+    img {
+      max-width: 450px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    img {
+      max-width: 300px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    img {
+      max-width: 250px;
+    }
+  }
+
+  @media (max-width: 440px) {
+    img {
+      max-width: 200px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    img {
+      max-width: 150px;
+    }
+    &__text {
+      margin-left: unset;
+    }  
+  }
+
+  @media (max-width: 270px) {
+    img {
+      max-width: 100px;
+    }
+  }
+
+  @media (max-height: 620px) {
+    img {
+      max-width: 500px;
+    }
+  }
+
+  @media (max-height: 560px) {
+    img {
+      max-width: 400px;
+    }
+  }
+  @media (max-height: 440px) {
+    img {
+      max-width: 300px;
+    }
+  }
+  @media (max-height: 360px) {
+    height: 87%;
+    img {
+      max-width: 200px;
+    }
+  }
+  @media (max-height: 290px) {
+    height: 83%;
+    img {
+      max-width: 100px;
+    }
+  }
 }

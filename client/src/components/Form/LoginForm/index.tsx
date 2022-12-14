@@ -1,10 +1,12 @@
 import TextField from '@mui/material/TextField';
+
+import Button from '../../Button';
+
 import { Formik, Form, FormikErrors, ErrorMessage } from 'formik';
-import Button from '../Button';
 
 import { Dispatch, SetStateAction } from 'react';
-import { fetchUser } from '../../store/slices/user';
-import { useAppDispatch } from '../../store/store';
+import { fetchUser } from '../../../store/slices/user';
+import { useAppDispatch } from '../../../store/store';
 
 import './form-login.scss'
 

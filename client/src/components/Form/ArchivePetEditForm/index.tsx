@@ -1,8 +1,13 @@
 import TextField from '@mui/material/TextField';
 
-import { Formik, Form, FormikErrors, ErrorMessage } from 'formik';
-import { authUrl } from '../../../utils/axios';
 import Button from '../../Button';
+
+import { Formik, Form } from 'formik';
+import { authUrl } from '../../../utils/axios';
+
+import './archive-pet-edit-form.scss';
+import { useDispatch } from 'react-redux';
+import { setRefetchArchive } from '../../../store/slices/refetch';
 
 type TArchivePetEditFormProps = {
   text: string | null;
@@ -12,12 +17,15 @@ type TArchivePetEditFormProps = {
 }
 
 const ArchivePetEditForm: React.FC<TArchivePetEditFormProps> = ({ text, history, petId, onCloseForm }) => {
+
+  const dispatch = useDispatch();
   return (
     <Formik
         initialValues={{ text: text, history: history }}
           onSubmit={(values, { setSubmitting }) => {
             authUrl.post('/pet/archive/'+petId, values)
               .then((res) => console.log(res.data.message))
+              .then(() => dispatch(setRefetchArchive(true)))
             // authUrl.post('/profile/edit', values)
             //   .then((res) => {
             //     dispatch(setAdmin(res.data.user))
@@ -27,7 +35,7 @@ const ArchivePetEditForm: React.FC<TArchivePetEditFormProps> = ({ text, history,
           }}
         >
           {({ isSubmitting, handleChange, values }) => (
-            <Form>
+            <Form className='archive-pet-edit__form'>
               <TextField
                 label="Краткий заголовок истории"
                 name='text'

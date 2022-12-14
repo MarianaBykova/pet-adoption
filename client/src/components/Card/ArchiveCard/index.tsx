@@ -1,29 +1,20 @@
 import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Grid from '@mui/material/Grid';
-import Divider from '@mui/material/Divider';
-import Avatar from '@mui/material/Avatar';
+import { Card, CardMedia, CardContent, CardActions }  from '@mui/material';
+import { Grid, Divider, Collapse, Typography, Tooltip } from '@mui/material';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useState } from 'react';
+
+import ArchivePetModal from '../../Modal/AchivePetModal.tsx';
+
 import floatToYearsMonths from '../../../utils/age';
 import { TArchivePet } from '../../../types/types';
-import ArchivePetModal from '../../Modal/AchivePetModal.tsx';
+
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-import { Tooltip } from '@mui/material';
 
+import './archive-card.scss';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -51,7 +42,7 @@ const ArchiveCard: React.FC<TArchivePet> = ({ id, name, age, image, text, hasHis
 
   return (
     <>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 250 }}>
         <CardMedia
           component="img"
           height="194"
@@ -61,7 +52,7 @@ const ArchiveCard: React.FC<TArchivePet> = ({ id, name, age, image, text, hasHis
         <CardContent>
         <Grid container alignItems="center">
             <Grid item xs>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography gutterBottom variant="h6" component="div" className='archive-card__title'>
                 {name}
               </Typography>
             </Grid>
@@ -97,7 +88,7 @@ const ArchiveCard: React.FC<TArchivePet> = ({ id, name, age, image, text, hasHis
           </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography>
+            <Typography className='archive-card__history'>
               {history}
             </Typography>
           </CardContent>

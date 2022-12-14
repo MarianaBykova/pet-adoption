@@ -16,7 +16,7 @@ import Button from '../Button';
 
 const PetCard: React.FC<TPetType> = ({id, name, age, sex, activity, image}) => {
   return (
-    <Card sx={{ maxWidth: 300 }} className='card'>
+    <Card sx={{ maxWidth: 200 }} className='card'>
       {sex === 'М' ? <MaleIcon className='gender-icon male'/>: <FemaleIcon className='gender-icon female'/>}
       {/* <CardActionArea> */}
       <Link to={'/pet/'+id}>
@@ -25,7 +25,7 @@ const PetCard: React.FC<TPetType> = ({id, name, age, sex, activity, image}) => {
       <CardContent>
         <Grid container alignItems="center">
           <Grid item xs>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography gutterBottom variant="h6" component="div" className='card__title'>
               {name}
             </Typography>
           </Grid>

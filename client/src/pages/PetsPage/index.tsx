@@ -17,22 +17,27 @@ const PetsPage: React.FC = () => {
 
   return (
     <div className='pets-page'>
-      <SelectMui />
+      <div className='pets-page__select'>
+        <SelectMui />
+      </div>
+      
       <div className='pets-page__content'>
         <CheckboxList/>
         {message ? <div>{message}</div> 
-          : 
-          <div className='pets-page__cards'>
-            {loading
-              ? [...new Array(6)].map((el, index) => <SkeletonMui key={index}/>)
-              : pets.map(obj => <PetCard key={obj.id} {...obj}/>)
+          :
+          <div className='pets-page__cards'> 
+            <div className='pets-page__cards-items'>
+              {loading
+                ? [...new Array(6)].map((el, index) => <SkeletonMui key={index}/>)
+                : pets.map(obj => <PetCard key={obj.id} {...obj}/>)
+              }
+            </div>
+            {loadMore && 
+              <Button onClick={() => dispatch(setPage())} style={{maxWidth: '15%', alignSelf: 'center'}}>Загрузить еще</Button>
             }
-          </div>   
+          </div>     
         }     
       </div>
-      {loadMore && 
-      <Button onClick={() => dispatch(setPage())} style={{margin: 'auto', display: 'block'}}>Загрузить еще</Button>
-      }
     </div>
   );
 }
