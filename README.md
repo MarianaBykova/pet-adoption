@@ -43,7 +43,7 @@
 ![Screenshot](./screenshots/create-pet-form.PNG)
 
 - Форма редактирования питомца
-![Screenshot](./screenshots/create-pet-form.PNG)
+![Screenshot](./screenshots/edit-pet-form.PNG)
 
 - Страница с питомцами, нашедшими дом
 ![Screenshot](./screenshots/archive-page.PNG)
