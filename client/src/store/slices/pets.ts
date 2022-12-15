@@ -30,10 +30,10 @@ export const fetchPets = createAsyncThunk(
   'pets/fetchAllPets',
   async (params: TFetchPetsArgs) => {
     const {page, sortType, queryString} = params;
-    const {data} = await baseUrl.get(`/pet?limit=6&page=${page}&sort=${sortType}&${queryString}`)
-    console.log(data, 'data')
+    const limit = 12;
+    const {data} = await baseUrl.get(`/pet?limit=${limit}&page=${page}&sort=${sortType}&${queryString}`)
     if (data.message) return {pets: [], loadMore: false, message: data.message}
-    if (data.length < 6) return {pets: data, loadMore: false, message: ''}
+    if (data.length < limit) return {pets: data, loadMore: false, message: ''}
     else return {pets: data, loadMore: true, message: ''};
   }
 )
